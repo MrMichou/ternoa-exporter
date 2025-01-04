@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'ternoa'
+    static_configs:
+      - targets: ['ternoa-exporter:8000']
