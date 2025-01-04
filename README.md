@@ -93,5 +93,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 Project Maintainer - MrMichou/Michael N.
+
 Ternoa Project - https://www.ternoa.network/
+
 Ternoa Operator - https://ternoa.scove.io/
