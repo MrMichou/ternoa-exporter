@@ -482,22 +482,9 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 13
-      },
-      "id": 13,
-      "panels": [],
-      "title": "Active Validators",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "ce8x2r5sijqpsf"
       },
       "fieldConfig": {
         "defaults": {
@@ -509,7 +496,6 @@
             "cellOptions": {
               "type": "auto"
             },
-            "filterable": true,
             "inspect": false
           },
           "mappings": [],
@@ -543,22 +529,6 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Nominations"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "CAPS"
-              },
-              {
-                "id": "custom.width",
-                "value": 150
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "Total Stake"
             },
             "properties": [
@@ -571,40 +541,16 @@
                 "value": 150
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Nominators"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 200
-              }
-            ]
           }
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 11,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 13
       },
-      "id": 8,
+      "id": 15,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -631,43 +577,28 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "ternoa_validator_total_stake{status=\"active\"}",
+          "exemplar": false,
+          "expr": "max by (name, validator, status) (ternoa_validator_total_stake{status=\"active\"})",
           "format": "table",
           "instant": true,
-          "refId": "Total Stake"
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "total_stake"
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "ternoa_validator_self_stake{status=\"active\"}",
+          "editorMode": "code",
+          "expr": "max by (name, validator, status) (ternoa_validator_self_stake{status=\"active\"})",
           "format": "table",
           "instant": true,
-          "refId": "Self Stake"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "expr": "ternoa_validator_nominations{status=\"active\"}",
-          "format": "table",
-          "instant": true,
-          "refId": "Nominations"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "expr": "ternoa_validator_nominator_count{status=\"active\"}",
-          "format": "table",
-          "instant": true,
-          "refId": "Nominators"
+          "range": false,
+          "refId": "self_stake"
         }
       ],
-      "title": "Active Validators Details",
+      "title": "All Validators active",
       "transformations": [
         {
           "id": "merge",
@@ -680,29 +611,14 @@
               "Time": true,
               "__name__": true,
               "instance": true,
-              "job": true,
-              "status": true,
-              "validator": false
+              "job": true
             },
-            "indexByName": {
-              "Time": 0,
-              "Value #Nominations": 8,
-              "Value #Nominators": 7,
-              "Value #Self Stake": 9,
-              "Value #Total Stake": 10,
-              "__name__": 1,
-              "instance": 2,
-              "job": 3,
-              "name": 4,
-              "status": 5,
-              "validator": 6
-            },
+            "indexByName": {},
             "renameByName": {
-              "Value #Nominations": "Nominations",
-              "Value #Nominators": "Nominators",
-              "Value #Self Stake": "Self Stake",
-              "Value #Total Stake": "Total Stake",
+              "Value #self_stake": "Self Stake",
+              "Value #total_stake": "Total Stake",
               "name": "Name",
+              "status": "Status",
               "validator": "Address"
             }
           }
@@ -716,7 +632,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 24
       },
       "id": 14,
       "panels": [],
@@ -726,7 +642,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "ce8x2r5sijqpsf"
       },
       "fieldConfig": {
         "defaults": {
@@ -738,7 +654,6 @@
             "cellOptions": {
               "type": "auto"
             },
-            "filterable": true,
             "inspect": false
           },
           "mappings": [],
@@ -746,7 +661,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
+                "color": "green",
                 "value": null
               }
             ]
@@ -757,22 +672,6 @@
             "matcher": {
               "id": "byName",
               "options": "Self Stake"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "CAPS"
-              },
-              {
-                "id": "custom.width",
-                "value": 150
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Nominations"
             },
             "properties": [
               {
@@ -800,40 +699,16 @@
                 "value": 150
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Nominators"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 200
-              }
-            ]
           }
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 25
       },
-      "id": 9,
+      "id": 16,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -859,43 +734,29 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "ternoa_validator_total_stake{status=\"waiting\"}",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "max by (name, validator, status) (ternoa_validator_total_stake{status=\"waiting\"})",
           "format": "table",
           "instant": true,
-          "refId": "Total Stake"
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "total_stake"
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "ternoa_validator_self_stake{status=\"waiting\"}",
+          "editorMode": "code",
+          "expr": "max by (name, validator, status) (ternoa_validator_self_stake{status=\"waiting\"})",
           "format": "table",
           "instant": true,
-          "refId": "Self Stake"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "expr": "ternoa_validator_nominations{status=\"waiting\"}",
-          "format": "table",
-          "instant": true,
-          "refId": "Nominations"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "expr": "ternoa_validator_nominator_count{status=\"waiting\"}",
-          "format": "table",
-          "instant": true,
-          "refId": "Nominators"
+          "range": false,
+          "refId": "self_stake"
         }
       ],
-      "title": "Waiting Validators Details",
+      "title": "All Validators active",
       "transformations": [
         {
           "id": "merge",
@@ -908,29 +769,14 @@
               "Time": true,
               "__name__": true,
               "instance": true,
-              "job": true,
-              "status": true,
-              "validator": false
+              "job": true
             },
-            "indexByName": {
-              "Time": 0,
-              "Value #Nominations": 8,
-              "Value #Nominators": 7,
-              "Value #Self Stake": 9,
-              "Value #Total Stake": 10,
-              "__name__": 1,
-              "instance": 2,
-              "job": 3,
-              "name": 4,
-              "status": 5,
-              "validator": 6
-            },
+            "indexByName": {},
             "renameByName": {
-              "Value #Nominations": "Nominations",
-              "Value #Nominators": "Nominators",
-              "Value #Self Stake": "Self Stake",
-              "Value #Total Stake": "Total Stake",
+              "Value #self_stake": "Self Stake",
+              "Value #total_stake": "Total Stake",
               "name": "Name",
+              "status": "Status",
               "validator": "Address"
             }
           }
@@ -958,6 +804,6 @@
   "timezone": "",
   "title": "Ternoa Validators Dashboard",
   "uid": "ternoa_validators",
-  "version": 4,
+  "version": 9,
   "weekStart": ""
 }
